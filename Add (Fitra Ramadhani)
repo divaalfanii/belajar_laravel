@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Tambah Catatan - My Diary</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>📝 Tambah Catatan</h1>
+    <nav>
+      <a href="home.html">🏠 Home</a>
+      <a href="view.html">📖 Lihat Catatan</a>
+      <button onclick="logout()">🚪 Logout</button>
+    </nav>
+  </header>
+
+  <main>
+    <form id="noteForm">
+      <input type="text" id="title" placeholder="Judul catatan" required>
+      <textarea id="content" placeholder="Tulis isi catatan di sini..." required></textarea>
+      <label><input type="checkbox" id="pin"> 📌 Pin catatan</label><br>
+      <button type="submit">💾 Simpan</button>
+    </form>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
