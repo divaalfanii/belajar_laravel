@@ -1,0 +1,87 @@
+// ==== LOGIN ====
+document.addEventListener("DOMContentLoaded", () => {
+  const loginForm = document.getElementById("loginForm");
+  if (loginForm) {
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      if (username === "admin" && password === "12345") {
+        localStorage.setItem("loggedIn", "true");
+        window.location.href = "home.html";
+      } else {
+        alert("Username atau password salah!");
+      }
+    });
+  }
+
+  if (!localStorage.getItem("loggedIn") && !window.location.href.includes("login.html")) {
+    window.location.href = "login.html";
+  }
+
+  // ==== LOGOUT ====
+  window.logout = () => {
+    localStorage.removeItem("loggedIn");
+    window.location.href = "login.html";
+  };
+
+  // ==== TAMBAH CATATAN ====
+  const noteForm = document.getElementById("noteForm");
+  if (noteForm) {
+    noteForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const title = document.getElementById("title").value;
+      const content = document.getElementById("content").value;
+      const pin = document.getElementById("pin").checked;
+      const date = new Date().toLocaleString();
+
+      const notes = JSON.parse(localStorage.getItem("notes")) || [];
+      notes.push({ title, content, date, pin });
+      localStorage.setItem("notes", JSON.stringify(notes));
+
+      alert("Catatan berhasil disimpan!");
+      window.location.href = "view.html";
+    });
+  }
+
+  // ==== LIHAT CATATAN + CARI ====
+  const list = document.getElementById("noteList");
+  const searchBox = document.getElementById("searchBox");
+
+  if (list) {
+    function showNotes(filter = "") {
+      let notes = JSON.parse(localStorage.getItem("notes")) || [];
+      // Catatan pinned tampil di atas
+      notes.sort((a, b) => (b.pin === true) - (a.pin === true));
+      const filtered = notes.filter(
+        n => n.title.toLowerCase().includes(filter.toLowerCase()) || n.content.toLowerCase().includes(filter.toLowerCase())
+      );
+      list.innerHTML = filtered.length
+        ? filtered.map((n, i) => `
+          <div class="note ${n.pin ? 'pinned' : ''}">
+            <h3>${n.title} ${n.pin ? '📌' : ''}</h3>
+            <small>${n.date}</small>
+            <p>${n.content}</p>
+            <button onclick="deleteNote(${i})" class="delete">🗑️ Hapus</button>
+          </div>`).join("")
+        : "<p>Tidak ada catatan ditemukan.</p>";
+    }
+
+    window.deleteNote = (index) => {
+      if (confirm("Yakin ingin menghapus catatan ini?")) {
+        let notes = JSON.parse(localStorage.getItem("notes")) || [];
+        notes.splice(index, 1);
+        localStorage.setItem("notes", JSON.stringify(notes));
+        showNotes(searchBox?.value || "");
+      }
+    };
+
+    showNotes();
+
+    if (searchBox) {
+      searchBox.addEventListener("input", (e) => {
+        showNotes(e.target.value);
+      });
+    }
+  }
+});
