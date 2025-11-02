@@ -1,0 +1,103 @@
+body {
+  background: linear-gradient(to bottom right, #ffb6c1, #ffe6f0);
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  color: #444;
+}
+
+header {
+  text-align: center;
+  background: #ff9fcf;
+  padding: 15px;
+  color: white;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+nav {
+  margin-top: 10px;
+}
+
+nav a, nav button {
+  margin: 5px;
+  padding: 8px 15px;
+  border-radius: 10px;
+  border: none;
+  background: white;
+  color: #ff69b4;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.container, main {
+  background: white;
+  width: 90%;
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+input, textarea {
+  width: 90%;
+  margin: 10px 0;
+  padding: 10px;
+  border: 2px solid #ffc0cb;
+  border-radius: 10px;
+  outline: none;
+}
+
+textarea {
+  height: 120px;
+  resize: none;
+}
+
+button, .button {
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+button:hover, .button:hover {
+  background-color: #ff85c2;
+}
+
+.note {
+  background: #fff0f5;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 10px 0;
+  text-align: left;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.note.pinned {
+  border-left: 5px solid #ff69b4;
+}
+
+.delete {
+  background: #ff4d6d;
+  margin-top: 10px;
+}
+
+#searchBox {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 2px solid #ffb6c1;
+  border-radius: 10px;
+}
+canvas {
+  margin-top: 25px;
+  background: #ffe4ec;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 4px 15px rgba(255, 182, 193, 0.5);
+}
